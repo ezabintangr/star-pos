@@ -7,9 +7,9 @@ import (
 )
 
 type Transaction struct {
-	ID            uint `gorm:"primarykey"`
-	UserID        uint
-	OutletID      uint
+	ID            string `gorm:"type:char(36);primarykey"`
+	UserID        string `gorm:"type:char(36)"`
+	OutletID      string `gorm:"type:char(36)"`
 	GrandTotal    float64
 	PaymentStatus string
 	CreatedAt     time.Time

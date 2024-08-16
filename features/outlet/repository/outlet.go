@@ -6,8 +6,8 @@ import (
 )
 
 type Outlet struct {
-	ID          uint `gorm:"primarykey"`
-	UserID      uint
+	ID          string `gorm:"type:char(36);primarykey"`
+	UserID      string `gorm:"type:char(36)"`
 	OutletName  string
 	Address     string
 	PhoneOutlet string

@@ -8,10 +8,10 @@ import (
 )
 
 type Discount struct {
-	ID           uint `gorm:"primarykey"`
-	UserID       uint
-	OutletID     uint
-	ProductID    uint
+	ID           string `gorm:"type:char(36);primarykey"`
+	UserID       string `gorm:"type:char(36)"`
+	OutletID     string `gorm:"type:char(36)"`
+	ProductID    string `gorm:"type:char(36)"`
 	DiscountName string
 	Amount       float64
 	DiscountType string

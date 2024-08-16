@@ -7,10 +7,10 @@ import (
 )
 
 type Product struct {
-	ID           uint `gorm:"primarykey"`
-	UserID       uint
+	ID           string `gorm:"type:char(36);primarykey"`
+	UserID       string `gorm:"type:char(36)"`
 	ProductName  string
-	CategoriesID uint
+	CategoriesID string `gorm:"type:char(36)"`
 	Stock        float64
 	Price        float64
 	CreatedAt    time.Time

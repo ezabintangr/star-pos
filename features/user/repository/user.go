@@ -3,9 +3,9 @@ package repository
 import "time"
 
 type User struct {
-	ID          uint `gorm:"primarykey"`
+	ID          string `gorm:"type:char(36);primarykey"`
 	UserName    string
-	PhoneNumber string
+	PhoneNumber string `gorm:"unique"`
 	Email       string
 	Password    string
 	Role        string

@@ -7,9 +7,9 @@ import (
 )
 
 type CartProduct struct {
-	ID        uint `gorm:"primarykey"`
-	CartID    uint
-	ProductID uint
+	ID        string `gorm:"type:char(36);primarykey"`
+	CartID    string `gorm:"type:char(36)"`
+	ProductID string `gorm:"type:char(36)"`
 	Quantity  int64
 	CreatedAt time.Time
 	UpdatedAt time.Time
