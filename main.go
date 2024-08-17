@@ -15,7 +15,7 @@ func main() {
 
 	e := echo.New()
 
-	migrations.InitMigration()
+	migrations.InitMigration(dbMySql)
 	routes.InitRouter(e, dbMySql)
 
 	e.Logger.Fatal(e.Start(":8080"))

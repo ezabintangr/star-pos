@@ -1,19 +1,32 @@
 package migrations
 
 import (
-	"star-pos/app/configs"
-	"star-pos/app/databases"
-	cartData "star-pos/features/cart/repository"
-	cartProductData "star-pos/features/cart_product/repository"
-	categoriesData "star-pos/features/categories/repository"
-	discountData "star-pos/features/discount/repository"
-	outletData "star-pos/features/outlet/repository"
-	productData "star-pos/features/product/repository"
-	transactionData "star-pos/features/transaction/repository"
-	TransactionDetailData "star-pos/features/transaction_detail/repository"
+	"encoding/json"
+	"log"
+	"os"
+	"star-pos/features/user"
 	userData "star-pos/features/user/repository"
+
+	"gorm.io/gorm"
 )
 
-func InitMigration() {
-	databases.InitMySql(configs.InitConfig()).AutoMigrate(&userData.User{}, &productData.Product{}, &cartData.Cart{}, &cartProductData.CartProduct{}, &categoriesData.Categories{}, &discountData.Discount{}, &outletData.Outlet{}, &transactionData.Transaction{}, &TransactionDetailData.TransactionDetail{})
+func InitMigration(db *gorm.DB) {
+	file, err := os.ReadFile("userdummy.json")
+	if err != nil {
+		log.Fatal("error reading file: ", err)
+	}
+	var users []user.UserCore
+	err = json.Unmarshal(file, &users)
+	if err != nil {
+		log.Fatal("error unmarshalling JSON: ", err)
+	}
+
+	repositoryInterface := userData.New(db)
+
+	for _, data := range users {
+		err = repositoryInterface.Insert(data)
+		if err != nil {
+			log.Fatal("error insert data: ", err)
+		}
+	}
 }

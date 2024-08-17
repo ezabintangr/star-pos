@@ -7,18 +7,18 @@ import (
 	"gorm.io/gorm"
 )
 
-type userQuery struct {
+type UserQuery struct {
 	db *gorm.DB
 }
 
 func New(db *gorm.DB) user.RepositoryInterface {
-	return &userQuery{
+	return &UserQuery{
 		db: db,
 	}
 }
 
 // Insert implements user.RepositoryInterface.
-func (u *userQuery) Insert(input user.UserCore) error {
+func (u *UserQuery) Insert(input user.UserCore) error {
 	accountGorm := User{
 		ID:          uuid.New().String(),
 		PhoneNumber: input.PhoneNumber,
