@@ -12,14 +12,16 @@ import (
 	productData "star-pos/features/product/repository"
 	transactionData "star-pos/features/transaction/repository"
 	TransactionDetailData "star-pos/features/transaction_detail/repository"
-	userData "star-pos/features/user/repository"
+	userModel "star-pos/features/user/model"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
 
-func InitMySql(cfg *configs.AppConfig) *gorm.DB {
+var DB *gorm.DB
+
+func InitMySql(cfg *configs.AppConfig) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		cfg.DB_USERNAME, cfg.DB_PASSWORD, cfg.DB_HOSTNAME, cfg.DB_PORT, cfg.DB_NAME)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
@@ -31,6 +33,6 @@ func InitMySql(cfg *configs.AppConfig) *gorm.DB {
 		panic(err)
 	}
 
-	db.AutoMigrate(&userData.User{}, &productData.Product{}, &cartData.Cart{}, &cartProductData.CartProduct{}, &categoriesData.Categories{}, &discountData.Discount{}, &outletData.Outlet{}, &transactionData.Transaction{}, &TransactionDetailData.TransactionDetail{})
-	return db
+	db.AutoMigrate(&userModel.User{}, &productData.Product{}, &cartData.Cart{}, &cartProductData.CartProduct{}, &categoriesData.Categories{}, &discountData.Discount{}, &outletData.Outlet{}, &transactionData.Transaction{}, &TransactionDetailData.TransactionDetail{})
+	DB = db
 }

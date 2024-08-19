@@ -4,24 +4,23 @@ import (
 	"encoding/json"
 	"log"
 	"os"
-	userData "star-pos/features/user/repository"
-
-	"gorm.io/gorm"
+	userModel "star-pos/features/user/model"
+	"star-pos/features/user/repository"
 )
 
-func InitMigration(db *gorm.DB) {
+func InitMigration() {
 	file, err := os.ReadFile("userdummy.json")
 	if err != nil {
 		log.Fatal("error reading file: ", err)
 	}
-	var users []userData.User
+	var users []userModel.User
 	err = json.Unmarshal(file, &users)
 	if err != nil {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
 	for _, data := range users {
-		err = userData.Insert(&data)
+		err = repository.Insert(&data)
 		if err != nil {
 			log.Fatal("error insert data: ", err)
 		}

@@ -2,7 +2,7 @@ package handler
 
 import (
 	"net/http"
-	"star-pos/features/user/repository"
+	userModel "star-pos/features/user/model"
 	"star-pos/features/user/service"
 	"star-pos/utils/response"
 	"strings"
@@ -27,7 +27,7 @@ func CreateAccount(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.WebJSONResponse("password confirm didn't match", nil))
 	}
 
-	requestAccount := repository.User{
+	requestAccount := userModel.User{
 		PhoneNumber: newRequest.PhoneNumber,
 		Password:    newRequest.Password,
 	}

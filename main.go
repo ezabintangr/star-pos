@@ -11,12 +11,11 @@ import (
 
 func main() {
 	cfg := configs.InitConfig()
-	dbMySql := databases.InitMySql(cfg)
+	databases.InitMySql(cfg)
+	migrations.InitMigration()
 
 	e := echo.New()
-
-	migrations.InitMigration(dbMySql)
-	routes.InitRouter(e, dbMySql)
+	routes.InitRouter(e)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }

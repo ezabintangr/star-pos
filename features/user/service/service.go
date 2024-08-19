@@ -2,11 +2,12 @@ package service
 
 import (
 	"errors"
+	userModel "star-pos/features/user/model"
 	"star-pos/features/user/repository"
 	encrypts "star-pos/utils"
 )
 
-func Create(input repository.User) error {
+func Create(input userModel.User) error {
 	if input.PhoneNumber == "" {
 		return errors.New("phone is required")
 	}

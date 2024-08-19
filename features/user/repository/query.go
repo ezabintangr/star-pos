@@ -2,24 +2,19 @@ package repository
 
 import (
 	"errors"
+	"star-pos/app/databases"
+	userModel "star-pos/features/user/model"
 
 	"github.com/google/uuid"
-	"gorm.io/gorm"
 )
 
-var db *gorm.DB
-
-func InitDatabase(database *gorm.DB) {
-	db = database
-}
-
-func Insert(input *User) error {
-	if db == nil {
+func Insert(input *userModel.User) error {
+	if databases.DB == nil {
 		return errors.New("database connection is not initialized")
 	}
 
 	input.ID = uuid.New().String()
-	tx := db.Create(&input)
+	tx := databases.DB.Create(&input)
 	if tx.Error != nil {
 		return tx.Error
 	}

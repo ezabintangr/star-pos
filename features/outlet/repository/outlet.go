@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"star-pos/features/user/repository"
+	userModel "star-pos/features/user/model"
 	"time"
 )
 
@@ -13,5 +13,5 @@ type Outlet struct {
 	PhoneOutlet string
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
-	User        repository.User `gorm:"ForeignKey:UserID"`
+	User        userModel.User `gorm:"ForeignKey:UserID"`
 }

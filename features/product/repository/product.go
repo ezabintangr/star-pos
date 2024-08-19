@@ -2,7 +2,7 @@ package repository
 
 import (
 	categoriesData "star-pos/features/categories/repository"
-	userData "star-pos/features/user/repository"
+	userModel "star-pos/features/user/model"
 	"time"
 )
 
@@ -15,6 +15,6 @@ type Product struct {
 	Price        float64
 	CreatedAt    time.Time
 	UpdatedAt    time.Time
-	User         userData.User             `gorm:"ForeignKey:UserID"`
+	User         userModel.User            `gorm:"ForeignKey:UserID"`
 	Categories   categoriesData.Categories `gorm:"ForeignKey:CategoriesID"`
 }
