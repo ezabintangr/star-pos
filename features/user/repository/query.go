@@ -1,31 +1,25 @@
 package repository
 
 import (
-	"star-pos/features/user"
+	"errors"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
-type UserQuery struct {
-	db *gorm.DB
+var db *gorm.DB
+
+func InitDatabase(database *gorm.DB) {
+	db = database
 }
 
-func New(db *gorm.DB) user.RepositoryInterface {
-	return &UserQuery{
-		db: db,
-	}
-}
-
-// Insert implements user.RepositoryInterface.
-func (u *UserQuery) Insert(input user.UserCore) error {
-	accountGorm := User{
-		ID:          uuid.New().String(),
-		PhoneNumber: input.PhoneNumber,
-		Password:    input.Password,
+func Insert(input *User) error {
+	if db == nil {
+		return errors.New("database connection is not initialized")
 	}
 
-	tx := u.db.Create(&accountGorm)
+	input.ID = uuid.New().String()
+	tx := db.Create(&input)
 	if tx.Error != nil {
 		return tx.Error
 	}

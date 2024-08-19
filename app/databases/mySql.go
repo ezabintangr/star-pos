@@ -30,6 +30,7 @@ func InitMySql(cfg *configs.AppConfig) *gorm.DB {
 	if err != nil {
 		panic(err)
 	}
+
 	db.AutoMigrate(&userData.User{}, &productData.Product{}, &cartData.Cart{}, &cartProductData.CartProduct{}, &categoriesData.Categories{}, &discountData.Discount{}, &outletData.Outlet{}, &transactionData.Transaction{}, &TransactionDetailData.TransactionDetail{})
 	return db
 }

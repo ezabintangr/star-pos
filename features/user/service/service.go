@@ -2,44 +2,23 @@ package service
 
 import (
 	"errors"
-	"star-pos/features/user"
+	"star-pos/features/user/repository"
 	encrypts "star-pos/utils"
 )
 
-type userService struct {
-	ur user.RepositoryInterface
-	uh encrypts.HashInterface
-}
-
-func New(ur user.RepositoryInterface, uh encrypts.HashInterface) user.ServiceInterface {
-	return &userService{
-		ur: ur,
-		uh: uh,
-	}
-}
-
-// Create implements user.ServiceInterface.
-func (u *userService) Create(input user.UserCore) error {
+func Create(input repository.User) error {
 	if input.PhoneNumber == "" {
-		return errors.New("phone number is required")
-	} else if input.Password == "" {
-		return errors.New("password is required")
-	} else if input.PasswordConfirm == "" {
-		return errors.New("password confirm is required")
+		return errors.New("phone is required")
 	}
 
-	if input.PasswordConfirm != input.Password {
-		return errors.New("password doesn't match")
-	}
-
-	hashed, errhash := u.uh.HashPassword(input.Password)
+	hashed, errhash := encrypts.NewHashService().HashPassword(input.Password)
 	if errhash != nil {
-		return errhash
+		return errors.New("error hashing password")
 	}
 
 	input.Password = hashed
 
-	err := u.ur.Insert(input)
+	err := repository.Insert(&input)
 	if err != nil {
 		return err
 	}

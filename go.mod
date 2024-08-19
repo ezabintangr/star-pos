@@ -7,7 +7,7 @@ require (
 	github.com/labstack/echo/v4 v4.12.0
 	golang.org/x/crypto v0.22.0
 	gorm.io/driver/mysql v1.5.7
-	gorm.io/gorm v1.25.7
+	gorm.io/gorm v1.25.11
 )
 
 require (
