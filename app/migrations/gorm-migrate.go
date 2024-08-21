@@ -4,8 +4,11 @@ import (
 	"encoding/json"
 	"log"
 	"os"
+	"star-pos/app/databases"
 	userModel "star-pos/features/user/model"
 	"star-pos/features/user/repository"
+
+	"gorm.io/gorm"
 )
 
 func InitMigration() {
@@ -20,9 +23,19 @@ func InitMigration() {
 	}
 
 	for _, data := range users {
-		err = repository.Insert(&data)
-		if err != nil {
-			log.Fatal("error insert data: ", err)
+		var existingUser userModel.User
+		result := databases.DB.Where("phone_number = ?", data.PhoneNumber).First(&existingUser)
+		if result.Error != nil {
+			log.Fatal("error check data: ", result.Error)
+		}
+
+		if result.Error == gorm.ErrRecordNotFound {
+			err = repository.Insert(&data)
+			if err != nil {
+				log.Fatal("error insert data: ", err)
+			}
+		} else {
+			log.Println("table already exist")
 		}
 	}
 }
