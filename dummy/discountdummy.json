@@ -1,0 +1,122 @@
+[
+    {
+        "id": "1048b333-7089-30d6-ac7a-fdaf12ab0a05",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "hari kemerdekaan",
+        "amount": 45,
+        "discount_type": "percentage",
+        "discount_max": 20000,
+        "created_at": "1997-09-06T19:20:49Z",
+        "updated_at": "1974-02-12T10:03:15Z"
+    },
+    {
+        "id": "1edfa50e-6464-3d14-89b5-c13b8e75ae67",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "diskon lebaran",
+        "amount": 20,
+        "discount_type": "percentage",
+        "discount_max": 35000,
+        "created_at": "1974-09-13T06:05:34Z",
+        "updated_at": "1973-12-19T23:29:23Z"
+    },
+    {
+        "id": "1fb28c14-4741-39d8-8c99-cda74af1c4b1",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "diskon Natal",
+        "amount": 35000,
+        "discount_type": "fixed",
+        "discount_max": 35000,
+        "created_at": "2008-07-12T04:02:04Z",
+        "updated_at": "1996-03-02T20:01:39Z"
+    },
+    {
+        "id": "46b38800-07cb-3045-96f0-a1b7137f715e",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "diskon 8.8",
+        "amount": 50,
+        "discount_type": "percentage",
+        "discount_max": 24000,
+        "created_at": "2011-09-10T13:21:19Z",
+        "updated_at": "1980-04-16T16:46:52Z"
+    },
+    {
+        "id": "4beb600c-44fc-3e26-9795-b6512dfe9ebe",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "diskon outlet",
+        "amount": 35000,
+        "discount_type": "fixed",
+        "discount_max": 35000,
+        "created_at": "1973-10-01T09:29:36Z",
+        "updated_at": "2013-08-27T14:33:18Z"
+    },
+    {
+        "id": "88738244-031e-3128-bac0-71f4901a8616",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "promo khusus",
+        "amount": 25,
+        "discount_type": "percentage",
+        "discount_max": 35000,
+        "created_at": "2008-03-19T03:23:00Z",
+        "updated_at": "2004-12-13T15:44:45Z"
+    },
+    {
+        "id": "933cfdac-be8e-319a-aa6b-095492d05347",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "promo lebaran",
+        "amount": 59,
+        "discount_type": "percentage",
+        "discount_max": 35000,
+        "created_at": "1982-02-24T00:25:15Z",
+        "updated_at": "1974-09-01T12:25:05Z"
+    },
+    {
+        "id": "a32d40e9-c052-3a58-8935-0760d4e16aa5",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "promo ulang tahun",
+        "amount": 60,
+        "discount_type": "percentage",
+        "discount_max": 35000,
+        "created_at": "1983-08-21T11:13:24Z",
+        "updated_at": "1999-02-20T14:25:57Z"
+    },
+    {
+        "id": "a68f66e6-0121-3283-b536-c155d41afd25",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "agus sedunia",
+        "amount": 40,
+        "discount_type": "percentage",
+        "discount_max": 35000,
+        "created_at": "1999-03-09T10:18:12Z",
+        "updated_at": "1997-04-17T18:10:37Z"
+    },
+    {
+        "id": "d625de0a-15d7-3bd6-a3f7-1fb196e32a96",
+        "user_id": "",
+        "outlet_id": "",
+        "product_id": "",
+        "discount_name": "okta sedunia",
+        "amount": 20,
+        "discount_type": "percentage",
+        "discount_max": 20000,
+        "created_at": "1994-05-05T21:03:13Z",
+        "updated_at": "1980-02-25T09:30:17Z"
+    }
+]

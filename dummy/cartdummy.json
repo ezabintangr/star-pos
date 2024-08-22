@@ -1,0 +1,92 @@
+[
+    {
+        "id": "218e12cf-45f7-34cf-ab7b-2487d0798127",
+        "user_id": "",
+        "ref_id": "72 jc",
+        "outlet_id": "",
+        "date": "2018-04-09T01:55:19Z",
+        "created_at": "2020-03-27T12:17:02Z",
+        "updated_at": "1976-04-20T06:21:00Z"
+    },
+    {
+        "id": "21eaa6d5-0993-30ae-97bc-80fa6503bf8b",
+        "user_id": "",
+        "ref_id": "83 tt",
+        "outlet_id": "",
+        "date": "2011-10-18T01:55:19Z",
+        "created_at": "1992-06-02T01:55:19Z",
+        "updated_at": "2013-09-25T08:49:44Z"
+    },
+    {
+        "id": "4750b13c-29a0-3c8d-8326-a7f8ae9c4cac",
+        "user_id": "",
+        "ref_id": "24 am",
+        "outlet_id": "",
+        "date": "2020-12-06T01:55:19Z",
+        "created_at": "2021-09-14T10:54:56Z",
+        "updated_at": "2014-05-24T21:48:44Z"
+    },
+    {
+        "id": "64e47e5c-a9e4-3030-982c-1fa57018ccbd",
+        "user_id": "",
+        "ref_id": "46 kg",
+        "outlet_id": "",
+        "date": "1994-02-08T01:55:19Z",
+        "created_at": "2001-04-18T08:58:40Z",
+        "updated_at": "2011-02-20T20:29:21Z"
+    },
+    {
+        "id": "6a2b8d2a-935f-3dde-a961-16b18a8ed212",
+        "user_id": "",
+        "ref_id": "09 bi",
+        "outlet_id": "",
+        "date": "2012-02-23T01:55:19Z",
+        "created_at": "2012-04-18T08:55:55Z",
+        "updated_at": "2005-07-22T04:43:31Z"
+    },
+    {
+        "id": "7e00569e-e462-344d-a02b-bbbda049331b",
+        "user_id": "",
+        "ref_id": "00 up",
+        "outlet_id": "",
+        "date": "2002-10-23T01:55:19Z",
+        "created_at": "2022-02-18T05:15:52Z",
+        "updated_at": "1993-03-22T06:37:15Z"
+    },
+    {
+        "id": "d69d78bd-079b-3062-99f2-f303eb287190",
+        "user_id": "",
+        "ref_id": "95 sd",
+        "outlet_id": "",
+        "date": "1976-09-29T01:55:19Z",
+        "created_at": "2019-07-26T08:57:44Z",
+        "updated_at": "2020-02-24T13:17:04Z"
+    },
+    {
+        "id": "e353eda6-00fa-3117-96eb-b66e31298c4c",
+        "user_id": "",
+        "ref_id": "44 fv",
+        "outlet_id": "",
+        "date": "2002-10-25T01:55:19Z",
+        "created_at": "1975-04-16T23:22:24Z",
+        "updated_at": "2002-05-16T14:57:14Z"
+    },
+    {
+        "id": "ecb6a3b7-426f-340a-b119-e7d4d419ff29",
+        "user_id": "",
+        "ref_id": "98 cj",
+        "outlet_id": "",
+        "date": "1996-04-30T01:55:19Z",
+        "created_at": "1993-11-03T17:39:47Z",
+        "updated_at": "1971-09-24T09:13:31Z"
+    },
+    {
+        "id": "eda118f5-6672-3b9c-949d-c42a16632cd3",
+        "user_id": "",
+        "ref_id": "52 jl",
+        "outlet_id": "",
+        "date": "1987-07-07T01:55:19Z",
+        "created_at": "1979-05-22T01:42:52Z",
+        "updated_at": "2001-09-20T06:28:13Z"
+    }
+]

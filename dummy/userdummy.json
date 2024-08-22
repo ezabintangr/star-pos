@@ -1,0 +1,102 @@
+[
+    {
+        "id": "0f1cc1bb-04de-3900-bbb3-21ee101d27a6",
+        "user_name": "sabina.mcdermott",
+        "phone_number": "(761)012-6154x589",
+        "email": "jerome.hansen@example.com",
+        "password": "110948ff04778e74aafdfb523052bf9516fea3a5",
+        "role": "cashier",
+        "created_at": "2003-04-29T13:37:08Z",
+        "updated_at": "2002-07-13T06:08:53Z"
+    },
+    {
+        "id": "10abf038-c075-3d2d-b9a3-6c00c787fc74",
+        "user_name": "dominique64",
+        "phone_number": "(748)076-7304x6157",
+        "email": "kayden54@example.com",
+        "password": "521b2d77764fc022f457bcc0ca6976e9f2498908",
+        "role": "cashier",
+        "created_at": "1977-02-16T15:50:13Z",
+        "updated_at": "1978-07-30T19:18:16Z"
+    },
+    {
+        "id": "14f5a769-1c1e-399c-bc43-5f5a4ef9495b",
+        "user_name": "ccorwin",
+        "phone_number": "714.619.9357x946",
+        "email": "herminia.tillman@example.org",
+        "password": "a4927397cd72e8df136ffda4dcd1d3e4ac952721",
+        "role": "cashier",
+        "created_at": "1992-01-27T03:57:58Z",
+        "updated_at": "1975-07-26T11:44:46Z"
+    },
+    {
+        "id": "21c101bb-21b7-32be-a67c-f43492413dde",
+        "user_name": "ndaugherty",
+        "phone_number": "289-115-7915x07866",
+        "email": "zrunte@example.org",
+        "password": "3e6b94ddde9c7ae8bf369c586d4e42a5564da967",
+        "role": "admin",
+        "created_at": "2009-01-24T09:03:30Z",
+        "updated_at": "1972-01-29T21:57:28Z"
+    },
+    {
+        "id": "7b058820-bf6e-3c8f-a5f1-6394008773b0",
+        "user_name": "rschulist",
+        "phone_number": "1-417-154-7758",
+        "email": "ldenesik@example.com",
+        "password": "a4bdb623bf37989a640484090c857992f6f3ba69",
+        "role": "admin",
+        "created_at": "2007-07-06T22:51:58Z",
+        "updated_at": "2020-04-06T07:26:27Z"
+    },
+    {
+        "id": "9ae2f350-3296-3392-9a5b-0fd50baa0a97",
+        "user_name": "yharber",
+        "phone_number": "602.784.9816",
+        "email": "haley.drew@example.net",
+        "password": "05effb3a5bd485cf7bdaf1e1156b1c864722878e",
+        "role": "admin",
+        "created_at": "1985-07-25T16:13:16Z",
+        "updated_at": "2020-05-14T20:11:48Z"
+    },
+    {
+        "id": "b2c16388-28f6-337f-b66b-e4664c54fd85",
+        "user_name": "fae.littel",
+        "phone_number": "1-249-699-3357",
+        "email": "hessel.devon@example.net",
+        "password": "864cd58d40d095f3a547375394910b040b6f2e00",
+        "role": "admin",
+        "created_at": "1999-08-02T18:57:24Z",
+        "updated_at": "2020-03-15T18:40:19Z"
+    },
+    {
+        "id": "c6c740a3-3eae-3f7a-9d3f-4f3a610e9ff5",
+        "user_name": "nrohan",
+        "phone_number": "576-064-1464",
+        "email": "shanie12@example.com",
+        "password": "14d726961f72ba702634319975f283cdf519cfb4",
+        "role": "admin",
+        "created_at": "1987-07-31T10:02:00Z",
+        "updated_at": "1994-05-25T23:50:08Z"
+    },
+    {
+        "id": "ef285326-683e-3a2a-9014-d85d1792a8ab",
+        "user_name": "ogerlach",
+        "phone_number": "984-611-6427x31100",
+        "email": "oran88@example.net",
+        "password": "959421b633c8046a1d79aadeceedd1026c6b68be",
+        "role": "cashier",
+        "created_at": "2010-08-24T05:24:24Z",
+        "updated_at": "1973-07-06T15:38:12Z"
+    },
+    {
+        "id": "f8ff9636-98a2-3085-aa1a-a8d8bba9c646",
+        "user_name": "karolann51",
+        "phone_number": "1-313-457-4750x68192",
+        "email": "hayes.sidney@example.com",
+        "password": "ada07c5a0cd24e9f30018811e800fc7e1ac426a3",
+        "role": "cashier",
+        "created_at": "1972-04-08T18:30:51Z",
+        "updated_at": "1973-11-03T19:07:41Z"
+    }
+]

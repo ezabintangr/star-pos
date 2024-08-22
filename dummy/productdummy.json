@@ -1,0 +1,102 @@
+[
+    {
+        "id": "0a81e525-ecc4-3c31-a7a8-330923fb84b4",
+        "user_id": "",
+        "product_name": "paralon",
+        "categories_id": "",
+        "stock": 20,
+        "price": 15000,
+        "created_at": "2022-10-23T16:45:54Z",
+        "updated_at": "1984-12-29T13:09:11Z"
+    },
+    {
+        "id": "178c47b5-dcd9-39b2-9b23-c82b05e2c609",
+        "user_id": "",
+        "product_name": "keran",
+        "categories_id": "",
+        "stock": 25,
+        "price": 7000,
+        "created_at": "1971-07-21T09:10:08Z",
+        "updated_at": "2019-01-17T08:29:21Z"
+    },
+    {
+        "id": "40a99a74-f7ed-3a4c-bfc2-3195c7cefea7",
+        "user_id": "",
+        "product_name": "toren",
+        "categories_id": "",
+        "stock": 3,
+        "price": 250000,
+        "created_at": "1976-05-15T23:47:29Z",
+        "updated_at": "2008-07-02T01:06:49Z"
+    },
+    {
+        "id": "44f96875-a445-394d-b278-7795351c591c",
+        "user_id": "",
+        "product_name": "baut",
+        "categories_id": "",
+        "stock": 50,
+        "price": 2000,
+        "created_at": "1983-06-10T12:00:29Z",
+        "updated_at": "1999-06-24T13:42:31Z"
+    },
+    {
+        "id": "56670593-2ee9-31b3-b060-26a8425346d8",
+        "user_id": "",
+        "product_name": "tang",
+        "categories_id": "",
+        "stock": 10,
+        "price": 14000,
+        "created_at": "1972-12-10T01:17:58Z",
+        "updated_at": "1979-04-20T07:41:17Z"
+    },
+    {
+        "id": "5ec3a4b6-c412-363c-93cc-3b40d883f424",
+        "user_id": "",
+        "product_name": "pipa",
+        "categories_id": "",
+        "stock": 14,
+        "price": 17494,
+        "created_at": "1972-11-24T18:58:59Z",
+        "updated_at": "1980-10-17T23:42:00Z"
+    },
+    {
+        "id": "73f3d0e4-2eee-3563-a1c7-a8c298f82b6b",
+        "user_id": "",
+        "product_name": "lampu",
+        "categories_id": "",
+        "stock": 12,
+        "price": 27183,
+        "created_at": "2002-06-08T12:07:45Z",
+        "updated_at": "2009-05-23T08:45:53Z"
+    },
+    {
+        "id": "76bebf57-4c33-3dc6-9260-a4a5c7a24b48",
+        "user_id": "",
+        "product_name": "paku",
+        "categories_id": "",
+        "stock": 100,
+        "price": 3000,
+        "created_at": "1985-12-12T21:40:16Z",
+        "updated_at": "1981-11-29T15:00:16Z"
+    },
+    {
+        "id": "af838059-2432-359e-840b-6889285e4d84",
+        "user_id": "",
+        "product_name": "mur",
+        "categories_id": "",
+        "stock": 19,
+        "price": 3400,
+        "created_at": "2015-05-29T12:23:47Z",
+        "updated_at": "1984-02-23T07:37:11Z"
+    },
+    {
+        "id": "dbe66d05-22b7-3ef4-9cf3-275b54c76bdd",
+        "user_id": "",
+        "product_name": "pump air",
+        "categories_id": "",
+        "stock": 5,
+        "price": 415000,
+        "created_at": "1973-12-12T07:59:32Z",
+        "updated_at": "1999-10-27T18:18:31Z"
+    }
+]

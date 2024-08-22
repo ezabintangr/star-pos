@@ -1,0 +1,92 @@
+[
+    {
+        "id": "0a37c466-7dea-3193-b2b4-f967998fe9dd",
+        "user_id": "",
+        "outlet_name": "la tansa",
+        "address": "9217 Douglas Rest Suite 553\nBeulahfort, SC 29428-3158",
+        "phone_outlet": "563.721.4904",
+        "created_at": "1970-03-28T09:50:40Z",
+        "updated_at": "1979-09-21T06:59:14Z"
+    },
+    {
+        "id": "1746e664-f713-3baa-ac07-8ecbe9791a7e",
+        "user_id": "",
+        "outlet_name": "quasi",
+        "address": "11432 Natalia Crescent Apt. 389\nNorth Krystal, HI 90697-8138",
+        "phone_outlet": "066.935.0234",
+        "created_at": "1976-11-30T14:54:02Z",
+        "updated_at": "2014-01-26T23:31:01Z"
+    },
+    {
+        "id": "239a5d12-b973-31cb-810e-5cd8cfa153fd",
+        "user_id": "",
+        "outlet_name": "rerum",
+        "address": "24213 O'Hara Forest\nNew Merle, OK 67253-3158",
+        "phone_outlet": "055.594.1254x616",
+        "created_at": "1993-03-08T10:40:56Z",
+        "updated_at": "1970-04-03T01:34:29Z"
+    },
+    {
+        "id": "24bc192c-2b0a-3ce2-b687-a0934f16cbee",
+        "user_id": "",
+        "outlet_name": "autem",
+        "address": "75827 Muhammad Summit Apt. 914\nWilhelmton, AR 55096",
+        "phone_outlet": "143.521.0723x6562",
+        "created_at": "2007-02-10T12:47:49Z",
+        "updated_at": "2011-12-15T20:32:40Z"
+    },
+    {
+        "id": "3bec8cc2-15cf-320f-9398-e386cd59343e",
+        "user_id": "",
+        "outlet_name": "sumber makmur",
+        "address": "255 Boris Forges Apt. 398\nMadiemouth, AR 30898-4652",
+        "phone_outlet": "397-860-8906",
+        "created_at": "1996-01-22T05:59:10Z",
+        "updated_at": "1987-02-23T09:24:14Z"
+    },
+    {
+        "id": "3e659c27-b6a5-3bc9-a335-ca31dba1156a",
+        "user_id": "",
+        "outlet_name": "iusto",
+        "address": "901 Johns Inlet Suite 232\nWest Jeniferhaven, MO 60481-6443",
+        "phone_outlet": "(980)154-7377x6561",
+        "created_at": "2011-01-04T14:15:54Z",
+        "updated_at": "1989-12-10T15:54:12Z"
+    },
+    {
+        "id": "8f371e28-e392-329c-9031-9fcb0d83bc29",
+        "user_id": "",
+        "outlet_name": "aneka jaya",
+        "address": "260 Ally Gardens Apt. 306\nNorth Kylie, TN 37567",
+        "phone_outlet": "(036)609-0172",
+        "created_at": "1978-06-12T17:11:37Z",
+        "updated_at": "2004-12-29T01:46:36Z"
+    },
+    {
+        "id": "a9026a12-ebd5-313f-b401-9365536268b3",
+        "user_id": "",
+        "outlet_name": "laudantium",
+        "address": "288 Lowe Villages\nTrompshire, NE 47432",
+        "phone_outlet": "1-124-557-8596x293",
+        "created_at": "1975-04-22T07:41:18Z",
+        "updated_at": "1990-10-18T20:51:23Z"
+    },
+    {
+        "id": "b5c772bf-af38-3ba0-84ee-1ef37c3b463d",
+        "user_id": "",
+        "outlet_name": "voluptatem",
+        "address": "542 Isaias Turnpike\nKirlinburgh, SC 27347",
+        "phone_outlet": "253.252.9718x223",
+        "created_at": "1993-02-19T01:58:59Z",
+        "updated_at": "1997-04-12T22:01:27Z"
+    },
+    {
+        "id": "f4bf6ed8-050a-3151-b1a2-9c5f84547e0f",
+        "user_id": "",
+        "outlet_name": "reiciendis",
+        "address": "75460 Shields Village Apt. 006\nRobelfurt, MN 68517-9580",
+        "phone_outlet": "06861722787",
+        "created_at": "1971-05-20T12:47:58Z",
+        "updated_at": "1975-02-10T01:39:27Z"
+    }
+]

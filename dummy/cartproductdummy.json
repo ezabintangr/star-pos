@@ -1,0 +1,82 @@
+[
+    {
+        "id": "10921c73-26fb-353a-b718-5a67e2836029",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 8,
+        "created_at": "1974-12-10T13:32:17Z",
+        "updated_at": "2018-05-11T04:32:38Z"
+    },
+    {
+        "id": "1dee6a8f-b321-3cbe-8b02-0bb1f01068ee",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 4,
+        "created_at": "2008-05-11T18:17:59Z",
+        "updated_at": "1981-01-14T04:35:35Z"
+    },
+    {
+        "id": "31485e16-4427-3ac8-ae3a-180385591848",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 2,
+        "created_at": "2020-12-13T01:08:35Z",
+        "updated_at": "1982-12-17T11:10:33Z"
+    },
+    {
+        "id": "5cd7bc5d-6edd-33f6-8441-117ba15fc423",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 5,
+        "created_at": "1972-03-07T20:48:44Z",
+        "updated_at": "2014-01-23T20:46:46Z"
+    },
+    {
+        "id": "666ff224-027d-3339-b6b9-571186fcd241",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 5,
+        "created_at": "2013-12-20T01:09:53Z",
+        "updated_at": "2000-07-28T22:59:35Z"
+    },
+    {
+        "id": "68c77835-d84c-3659-b910-500b80d460dc",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 1,
+        "created_at": "1978-07-08T03:11:32Z",
+        "updated_at": "1980-03-15T12:16:15Z"
+    },
+    {
+        "id": "7a88a7e9-e8ce-3a6e-9374-648ee367dae5",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 2,
+        "created_at": "1995-09-16T00:34:21Z",
+        "updated_at": "2024-01-29T04:38:48Z"
+    },
+    {
+        "id": "8d2ffbc6-c5c8-32bb-ad53-4db1ce11788d",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 3,
+        "created_at": "2001-01-23T08:06:23Z",
+        "updated_at": "1993-05-04T06:31:33Z"
+    },
+    {
+        "id": "9c47bc76-edc1-3e5d-b49b-0ced7848d270",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 5,
+        "created_at": "2002-06-26T18:50:00Z",
+        "updated_at": "1995-04-21T14:27:32Z"
+    },
+    {
+        "id": "e2b668af-ba15-33e4-af0e-1a441a98c976",
+        "cart_id": "",
+        "product_id": "",
+        "quantity": 1,
+        "created_at": "1971-06-07T05:04:35Z",
+        "updated_at": "1979-09-13T11:42:55Z"
+    }
+]
