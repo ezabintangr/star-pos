@@ -1,6 +1,7 @@
 package databases
 
 import (
+	"database/sql"
 	"fmt"
 	"star-pos/app/configs"
 
@@ -16,10 +17,12 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+
 	"gorm.io/gorm/logger"
 )
 
 var DB *gorm.DB
+var DBSql *sql.DB
 
 func InitMySql(cfg *configs.AppConfig) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
@@ -29,6 +32,16 @@ func InitMySql(cfg *configs.AppConfig) {
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,
 	})
+	if err != nil {
+		panic(err)
+	}
+
+	DBSql, err = sql.Open("mysql", dsn)
+	if err != nil {
+		panic(err)
+	}
+
+	err = DBSql.Ping()
 	if err != nil {
 		panic(err)
 	}

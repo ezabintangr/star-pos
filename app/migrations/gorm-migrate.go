@@ -15,8 +15,6 @@ import (
 	transactionDetailModel "star-pos/features/transaction_detail/model"
 	userModel "star-pos/features/user/model"
 	"time"
-
-	"gorm.io/gorm"
 )
 
 func InitMigration() {
@@ -32,20 +30,21 @@ func InitMigration() {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
-	for _, data := range users {
-		var existingUser userModel.User
-		result := databases.DB.Where("id = ?", data.ID).First(&existingUser)
-		if result.Error != nil {
-			if result.Error == gorm.ErrRecordNotFound {
-				tx := databases.DB.Create(&data)
-				if tx.Error != nil {
-					roll.Rollback()
-					log.Fatal("error insert data: ", tx.Error)
-				}
+	var count int
+	err = databases.DBSql.QueryRow("SELECT COUNT(id) FROM users").Scan(&count)
+	if err != nil {
+		log.Fatal("error executing query: ", err)
+	}
+
+	if count > 0 {
+		log.Println("table already exist")
+	} else {
+		for _, data := range users {
+			tx := databases.DB.Create(&data)
+			if tx.Error != nil {
+				roll.Rollback()
+				log.Fatal("error insert data: ", tx.Error)
 			}
-		} else {
-			log.Println("table already exist")
-			break
 		}
 	}
 
@@ -59,20 +58,20 @@ func InitMigration() {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
-	for i, data := range outlet {
-		var existingOutlet outletModel.Outlet
-		result := databases.DB.Where("id = ?", data.ID).First(&existingOutlet)
-		if result.Error != nil {
-			if result.Error == gorm.ErrRecordNotFound {
-				data.UserID = users[i].ID
-				tx := databases.DB.Create(&data)
-				if tx.Error != nil {
-					log.Fatal("error insert data: ", tx.Error)
-				}
+	err = databases.DBSql.QueryRow("SELECT COUNT(id) FROM outlets").Scan(&count)
+	if err != nil {
+		log.Fatal("error executing query: ", err)
+	}
+
+	if count > 0 {
+		log.Println("table already exist")
+	} else {
+		for i, data := range outlet {
+			data.UserID = users[i].ID
+			tx := databases.DB.Create(&data)
+			if tx.Error != nil {
+				log.Fatal("error insert data: ", tx.Error)
 			}
-		} else {
-			log.Println("table already exist")
-			break
 		}
 	}
 
@@ -86,22 +85,21 @@ func InitMigration() {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
-	for i, data := range categories {
-		var existingCategories categoriesModel.Categories
-		result := databases.DB.Where("id = ?", data.ID).First(&existingCategories)
-		if result.Error != nil {
-			if result.Error == gorm.ErrRecordNotFound {
-				data.UserID = users[i].ID
-				tx := databases.DB.Create(&data)
-				if tx.Error != nil {
-					roll.Rollback()
-					log.Fatal("error insert data: ", tx.Error)
-				}
+	err = databases.DBSql.QueryRow("SELECT COUNT(id) FROM categories").Scan(&count)
+	if err != nil {
+		log.Fatal("error executing query: ", err)
+	}
 
+	if count > 0 {
+		log.Println("table already exist")
+	} else {
+		for i, data := range categories {
+			data.UserID = users[i].ID
+			tx := databases.DB.Create(&data)
+			if tx.Error != nil {
+				roll.Rollback()
+				log.Fatal("error insert data: ", tx.Error)
 			}
-		} else {
-			log.Println("table already exist")
-			break
 		}
 	}
 
@@ -115,22 +113,22 @@ func InitMigration() {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
-	for i, data := range products {
-		var existingProduct productModel.Product
-		result := databases.DB.Where("id = ?", data.ID).First(&existingProduct)
-		if result.Error != nil {
-			if result.Error == gorm.ErrRecordNotFound {
-				data.UserID = users[i].ID
-				data.CategoriesID = categories[i].ID
-				tx := databases.DB.Create(&data)
-				if tx.Error != nil {
-					roll.Rollback()
-					log.Fatal("error insert data: ", tx.Error)
-				}
+	err = databases.DBSql.QueryRow("SELECT COUNT(id) FROM products").Scan(&count)
+	if err != nil {
+		log.Fatal("error executing query: ", err)
+	}
+
+	if count > 0 {
+		log.Println("table already exist")
+	} else {
+		for i, data := range products {
+			data.UserID = users[i].ID
+			data.CategoriesID = categories[i].ID
+			tx := databases.DB.Create(&data)
+			if tx.Error != nil {
+				roll.Rollback()
+				log.Fatal("error insert data: ", tx.Error)
 			}
-		} else {
-			log.Println("table already exist")
-			break
 		}
 	}
 
@@ -145,27 +143,26 @@ func InitMigration() {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
-	for i, data := range carts {
-		var existingCart cartModel.Cart
-		_, err = time.Parse("2006-01-02", data.Date.Format("2006-01-02"))
-		if err != nil {
-			log.Fatal("error parse date: ", err)
-		}
+	err = databases.DBSql.QueryRow("SELECT COUNT(id) FROM carts").Scan(&count)
+	if err != nil {
+		log.Fatal("error executing query: ", err)
+	}
 
-		result := databases.DB.Where("id = ?", data.ID).First(&existingCart)
-		if result.Error != nil {
-			if result.Error == gorm.ErrRecordNotFound {
-				data.UserID = users[i].ID
-				data.OutletID = outlet[i].ID
-				tx := databases.DB.Create(&data)
-				if tx.Error != nil {
-					roll.Rollback()
-					log.Fatal("error insert data: ", tx.Error)
-				}
+	if count > 0 {
+		log.Println("table already exist")
+	} else {
+		for i, data := range carts {
+			_, err = time.Parse("2006-01-02", data.Date.Format("2006-01-02"))
+			if err != nil {
+				log.Fatal("error parse date: ", err)
 			}
-		} else {
-			log.Println("table already exist")
-			break
+			data.UserID = users[i].ID
+			data.OutletID = outlet[i].ID
+			tx := databases.DB.Create(&data)
+			if tx.Error != nil {
+				roll.Rollback()
+				log.Fatal("error insert data: ", tx.Error)
+			}
 		}
 	}
 
@@ -179,22 +176,22 @@ func InitMigration() {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
-	for i, data := range cartProduct {
-		var existingCartProduct cartProductModel.CartProduct
-		result := databases.DB.Where("id = ?", data.ID).First(&existingCartProduct)
-		if result.Error != nil {
-			if result.Error == gorm.ErrRecordNotFound {
-				data.CartID = carts[i].ID
-				data.ProductID = products[i].ID
-				tx := databases.DB.Create(&data)
-				if tx.Error != nil {
-					roll.Rollback()
-					log.Fatal("error insert data: ", tx.Error)
-				}
+	err = databases.DBSql.QueryRow("SELECT COUNT(id) FROM cart_products").Scan(&count)
+	if err != nil {
+		log.Fatal("error executing query: ", err)
+	}
+
+	if count > 0 {
+		log.Println("table already exist")
+	} else {
+		for i, data := range cartProduct {
+			data.CartID = carts[i].ID
+			data.ProductID = products[i].ID
+			tx := databases.DB.Create(&data)
+			if tx.Error != nil {
+				roll.Rollback()
+				log.Fatal("error insert data: ", tx.Error)
 			}
-		} else {
-			log.Println("table already exist")
-			break
 		}
 	}
 
@@ -208,23 +205,23 @@ func InitMigration() {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
-	for i, data := range discounts {
-		var existingDiscount discountModel.Discount
-		result := databases.DB.Where("id = ?", data.ID).First(&existingDiscount)
-		if result.Error != nil {
-			if result.Error == gorm.ErrRecordNotFound {
-				data.UserID = users[i].ID
-				data.OutletID = outlet[i].ID
-				data.ProductID = products[i].ID
-				tx := databases.DB.Create(&data)
-				if tx.Error != nil {
-					roll.Rollback()
-					log.Fatal("error insert data: ", tx.Error)
-				}
+	err = databases.DBSql.QueryRow("SELECT COUNT(id) FROM discounts").Scan(&count)
+	if err != nil {
+		log.Fatal("error executing query: ", err)
+	}
+
+	if count > 0 {
+		log.Println("table already exist")
+	} else {
+		for i, data := range discounts {
+			data.UserID = users[i].ID
+			data.OutletID = outlet[i].ID
+			data.ProductID = products[i].ID
+			tx := databases.DB.Create(&data)
+			if tx.Error != nil {
+				roll.Rollback()
+				log.Fatal("error insert data: ", tx.Error)
 			}
-		} else {
-			log.Println("table already exist")
-			break
 		}
 	}
 
@@ -238,22 +235,22 @@ func InitMigration() {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
-	for i, data := range transactions {
-		var existingTransaction transactionModel.Transaction
-		result := databases.DB.Where("id = ?", data.ID).First(&existingTransaction)
-		if result.Error != nil {
-			if result.Error == gorm.ErrRecordNotFound {
-				data.UserID = users[i].ID
-				data.OutletID = outlet[i].ID
-				tx := databases.DB.Create(&data)
-				if tx.Error != nil {
-					roll.Rollback()
-					log.Fatal("error insert data: ", tx.Error)
-				}
+	err = databases.DBSql.QueryRow("SELECT COUNT(id) FROM transactions").Scan(&count)
+	if err != nil {
+		log.Fatal("error executing query: ", err)
+	}
+
+	if count > 0 {
+		log.Println("table already exist")
+	} else {
+		for i, data := range transactions {
+			data.UserID = users[i].ID
+			data.OutletID = outlet[i].ID
+			tx := databases.DB.Create(&data)
+			if tx.Error != nil {
+				roll.Rollback()
+				log.Fatal("error insert data: ", tx.Error)
 			}
-		} else {
-			log.Println("table already exist")
-			break
 		}
 	}
 
@@ -267,21 +264,21 @@ func InitMigration() {
 		log.Fatal("error unmarshalling JSON: ", err)
 	}
 
-	for i, data := range transactionsDetails {
-		var existingTransactionDetail transactionDetailModel.TransactionDetail
-		result := databases.DB.Where("id = ?", data.ID).First(&existingTransactionDetail)
-		if result.Error != nil {
-			if result.Error == gorm.ErrRecordNotFound {
-				data.TransactionID = transactions[i].ID
-				tx := databases.DB.Create(&data)
-				if tx.Error != nil {
-					roll.Rollback()
-					log.Fatal("error insert data: ", tx.Error)
-				}
+	err = databases.DBSql.QueryRow("SELECT COUNT(id) FROM transaction_details").Scan(&count)
+	if err != nil {
+		log.Fatal("error executing query: ", err)
+	}
+
+	if count > 0 {
+		log.Println("table already exist")
+	} else {
+		for i, data := range transactionsDetails {
+			data.TransactionID = transactions[i].ID
+			tx := databases.DB.Create(&data)
+			if tx.Error != nil {
+				roll.Rollback()
+				log.Fatal("error insert data: ", tx.Error)
 			}
-		} else {
-			log.Println("table already exist")
-			break
 		}
 	}
 
