@@ -1,33 +1,58 @@
 package repository
 
 import (
-	"star-pos/features/user"
+	"errors"
+	"star-pos/app/databases"
+	userModel "star-pos/features/user/model"
 
 	"github.com/google/uuid"
-	"gorm.io/gorm"
 )
 
-type UserQuery struct {
-	db *gorm.DB
-}
-
-func New(db *gorm.DB) user.RepositoryInterface {
-	return &UserQuery{
-		db: db,
-	}
-}
-
-// Insert implements user.RepositoryInterface.
-func (u *UserQuery) Insert(input user.UserCore) error {
-	accountGorm := User{
-		ID:          uuid.New().String(),
-		PhoneNumber: input.PhoneNumber,
-		Password:    input.Password,
+func Insert(input *userModel.User) error {
+	if databases.DB == nil {
+		return errors.New("database connection is not initialized")
 	}
 
-	tx := u.db.Create(&accountGorm)
+	input.ID = uuid.New().String()
+	tx := databases.DB.Create(&input)
 	if tx.Error != nil {
 		return tx.Error
 	}
+	return nil
+}
+
+func ReadProfile(id string) (*userModel.User, error) {
+	var ProfileUser userModel.User
+	tx := databases.DB.Where("id = ?", id).First(&ProfileUser)
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
+
+	return &ProfileUser, nil
+}
+
+func Update(input userModel.User) error {
+	tx := databases.DB.Where("id = ?", input.ID).Updates(&input)
+	if tx.Error != nil {
+		return tx.Error
+	}
+	return nil
+}
+
+func Login(input userModel.User) (*userModel.User, error) {
+	var dataLogin userModel.User
+	tx := databases.DB.Where("phone_number = ?", input.PhoneNumber).First(&dataLogin)
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
+	return &dataLogin, nil
+}
+
+func DeleteAccount(id string) error {
+	tx := databases.DB.Delete(&userModel.User{}, "id = ?", id)
+	if tx.Error != nil {
+		return tx.Error
+	}
+
 	return nil
 }

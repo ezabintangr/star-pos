@@ -2,45 +2,40 @@ package handler
 
 import (
 	"net/http"
-	"star-pos/features/user"
+	"star-pos/app/middlewares"
+	userModel "star-pos/features/user/model"
+	"star-pos/features/user/service"
 	"star-pos/utils/response"
 	"strings"
 
 	"github.com/labstack/echo/v4"
 )
 
-type userHandler struct {
-	userService user.ServiceInterface
-}
-
-func New(us user.ServiceInterface) *userHandler {
-	return &userHandler{
-		userService: us,
-	}
-}
-
-func (uh *userHandler) Hello(c echo.Context) error {
+func Hello(c echo.Context) error {
 	return c.JSON(http.StatusOK, response.WebJSONHelloResponse("hello world"))
 }
 
-func (uh *userHandler) CreateAccount(c echo.Context) error {
+func CreateAccount(c echo.Context) error {
 	newRequest := RequestAccount{}
 	errbind := c.Bind(&newRequest)
 	if errbind != nil {
 		return c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error bind data: "+errbind.Error(), nil))
 	}
 
-	newAccountCore := user.UserCore{
-		PhoneNumber:     newRequest.PhoneNumber,
-		Password:        newRequest.Password,
-		PasswordConfirm: newRequest.PasswordConfirm,
+	if newRequest.Password == "" || newRequest.PasswordConfirm == "" {
+		return c.JSON(http.StatusBadRequest, response.WebJSONResponse("this field is required", nil))
+	} else if newRequest.PasswordConfirm != newRequest.Password {
+		return c.JSON(http.StatusBadRequest, response.WebJSONResponse("password confirm didn't match", nil))
 	}
 
-	errCreate := uh.userService.Create(newAccountCore)
+	requestAccount := userModel.User{
+		PhoneNumber: newRequest.PhoneNumber,
+		Password:    newRequest.Password,
+	}
+
+	errCreate := service.Create(requestAccount)
 	if errCreate != nil {
 		if strings.Contains(errCreate.Error(), "phone") {
-			return c.JSON(http.StatusBadRequest, response.WebJSONResponse("error create account: "+errCreate.Error(), nil))
-		} else if strings.Contains(errCreate.Error(), "password") {
 			return c.JSON(http.StatusBadRequest, response.WebJSONResponse("error create account: "+errCreate.Error(), nil))
 		} else {
 			return c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error create account:"+errCreate.Error(), nil))
@@ -48,4 +43,95 @@ func (uh *userHandler) CreateAccount(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusCreated, response.WebJSONResponse("success create account", nil))
+}
+
+func GetProfile(c echo.Context) error {
+	idToken := middlewares.ExtractTokenUserId(c)
+	result, err := service.GetProfile(idToken)
+	if err != nil {
+		if strings.Contains(err.Error(), "login") {
+			return c.JSON(http.StatusBadRequest, response.WebJSONResponse("error get profile: "+err.Error(), nil))
+		} else {
+			return c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error get profile data: "+err.Error(), nil))
+		}
+	}
+
+	responseProfile := ResponseUser{
+		ID:          idToken,
+		UserName:    result.UserName,
+		PhoneNumber: result.PhoneNumber,
+		Email:       result.Email,
+		Role:        result.Role,
+		CreatedAt:   result.CreatedAt,
+		UpdatedAt:   result.UpdatedAt,
+	}
+
+	return c.JSON(http.StatusOK, response.WebJSONResponse("success get profile", responseProfile))
+}
+
+func UpdateProfile(c echo.Context) error {
+	idToken := middlewares.ExtractTokenUserId(c)
+	updateRequest := userModel.User{}
+	errBind := c.Bind(&updateRequest)
+	if errBind != nil {
+		return c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error bind data: "+errBind.Error(), nil))
+	}
+
+	updateRequest.ID = idToken
+
+	err := service.UpdateProfile(updateRequest)
+	if err != nil {
+		if strings.Contains(err.Error(), "not change") {
+			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
+		} else if strings.Contains(err.Error(), "required") {
+			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
+		} else {
+			return c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error update profile: "+err.Error(), nil))
+		}
+	}
+
+	return c.JSON(http.StatusOK, response.WebJSONResponse("update successful", nil))
+}
+
+func DeleteAccount(c echo.Context) error {
+	idToken := middlewares.ExtractTokenUserId(c)
+	err := service.Delete(idToken)
+	if err != nil {
+		if strings.ContainsAny(err.Error(), "first") {
+			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
+		} else {
+			return c.JSON(http.StatusInternalServerError, response.WebJSONResponse(err.Error(), nil))
+		}
+	}
+
+	return c.JSON(http.StatusOK, response.WebJSONResponse("delete account successfully", nil))
+}
+
+func Login(c echo.Context) error {
+	var LoginRequest userModel.User
+	errBind := c.Bind(&LoginRequest)
+	if errBind != nil {
+		return c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error bind data: "+errBind.Error(), nil))
+	}
+
+	data, token, err := service.Login(LoginRequest)
+	if err != nil {
+		if strings.Contains(err.Error(), "fill") {
+			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
+		} else if strings.Contains(err.Error(), "password") {
+			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
+		} else if strings.Contains(err.Error(), "not found") {
+			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
+		} else {
+			return c.JSON(http.StatusInternalServerError, response.WebJSONResponse(err.Error(), nil))
+		}
+	}
+
+	responseLogin := map[string]any{
+		"data":  data,
+		"token": token,
+	}
+
+	return c.JSON(http.StatusOK, response.WebJSONResponse("login successful", responseLogin))
+
 }

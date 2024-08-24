@@ -1,0 +1,72 @@
+[
+    {
+        "id": "132ecacd-455b-39ae-9887-50a8541b8007",
+        "user_id": "",
+        "category_name": "ut",
+        "created_at": "1979-01-09T12:45:43Z",
+        "updated_at": "1994-10-28T11:29:23Z"
+    },
+    {
+        "id": "18f43c3f-5606-3784-abb5-26f784e09c86",
+        "user_id": "",
+        "category_name": "ratione",
+        "created_at": "2003-09-15T09:18:01Z",
+        "updated_at": "1970-05-12T05:29:49Z"
+    },
+    {
+        "id": "3240cf0e-087c-3638-aea5-96760fa47130",
+        "user_id": "",
+        "category_name": "architecto",
+        "created_at": "2007-11-03T12:26:14Z",
+        "updated_at": "1987-06-05T16:07:07Z"
+    },
+    {
+        "id": "666c3d90-3fe0-33db-8a03-b94451af16ae",
+        "user_id": "",
+        "category_name": "elektronik",
+        "created_at": "2019-12-04T17:30:10Z",
+        "updated_at": "2003-08-04T16:48:35Z"
+    },
+    {
+        "id": "710b204b-e62d-3378-9dcd-f4825cfca7dc",
+        "user_id": "",
+        "category_name": "pipa",
+        "created_at": "1974-01-13T23:34:25Z",
+        "updated_at": "1994-08-20T18:13:13Z"
+    },
+    {
+        "id": "9d0a0efb-cdb1-3fd1-9a8a-947b30d901a8",
+        "user_id": "",
+        "category_name": "perkakas",
+        "created_at": "1991-05-19T06:24:10Z",
+        "updated_at": "1986-09-27T10:41:50Z"
+    },
+    {
+        "id": "a977a3c3-f00d-36bc-9871-2a35f37a21e6",
+        "user_id": "",
+        "category_name": "ipsa",
+        "created_at": "2004-12-26T11:59:42Z",
+        "updated_at": "2013-03-25T10:17:43Z"
+    },
+    {
+        "id": "b0938a2d-1bb5-3716-8cbb-806238c76300",
+        "user_id": "",
+        "category_name": "explicabo",
+        "created_at": "1984-06-01T17:28:47Z",
+        "updated_at": "2016-03-05T06:13:50Z"
+    },
+    {
+        "id": "c0ab9b39-80e5-3ad6-b866-541a62a33b7a",
+        "user_id": "",
+        "category_name": "dolores",
+        "created_at": "1992-02-20T21:57:29Z",
+        "updated_at": "1986-06-24T15:04:48Z"
+    },
+    {
+        "id": "e32e876d-ab81-3484-a720-b05bd22119b5",
+        "user_id": "",
+        "category_name": "quos",
+        "created_at": "1994-09-17T18:03:28Z",
+        "updated_at": "2015-06-12T00:57:02Z"
+    }
+]
