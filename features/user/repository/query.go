@@ -21,6 +21,16 @@ func Insert(input *userModel.User) error {
 	return nil
 }
 
+func ReadAllProfile() ([]userModel.User, error) {
+	var allUser []userModel.User
+	tx := databases.DB.Model(&userModel.User{}).Find(&allUser)
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
+
+	return allUser, nil
+}
+
 func ReadProfile(id string) (*userModel.User, error) {
 	var ProfileUser userModel.User
 	tx := databases.DB.Where("id = ?", id).First(&ProfileUser)

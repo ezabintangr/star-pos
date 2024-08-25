@@ -28,6 +28,15 @@ func Create(input userModel.User) error {
 	return nil
 }
 
+func GetAllUser() ([]userModel.User, error) {
+	result, err := repository.ReadAllProfile()
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
 func GetProfile(id string) (*userModel.User, error) {
 	if id == "" {
 		return nil, errors.New("you must login first")

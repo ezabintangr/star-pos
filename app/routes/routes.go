@@ -11,7 +11,8 @@ func InitRouter(e *echo.Echo) {
 	e.GET("/hello", userHandler.Hello)
 	e.POST("/users", userHandler.CreateAccount)
 	e.POST("/login", userHandler.Login)
-	e.GET("/users", userHandler.GetProfile, middlewares.JWTMiddleware())
-	e.PATCH("/users", userHandler.UpdateProfile, middlewares.JWTMiddleware())
-	e.DELETE("/users", userHandler.DeleteAccount, middlewares.JWTMiddleware())
+	e.GET("/users", userHandler.GetAllProfile)
+	e.GET("/users/:id", userHandler.GetProfile, middlewares.JWTMiddleware())
+	e.PATCH("/users/:id", userHandler.UpdateProfile, middlewares.JWTMiddleware())
+	e.DELETE("/users/:id", userHandler.DeleteAccount, middlewares.JWTMiddleware())
 }

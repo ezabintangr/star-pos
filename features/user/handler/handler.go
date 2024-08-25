@@ -2,7 +2,6 @@ package handler
 
 import (
 	"net/http"
-	"star-pos/app/middlewares"
 	userModel "star-pos/features/user/model"
 	"star-pos/features/user/service"
 	"star-pos/utils/response"
@@ -45,9 +44,18 @@ func CreateAccount(c echo.Context) error {
 	return c.JSON(http.StatusCreated, response.WebJSONResponse("success create account", nil))
 }
 
+func GetAllProfile(c echo.Context) error {
+	result, err := service.GetAllUser()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error get all user: "+err.Error(), nil))
+	}
+
+	return c.JSON(http.StatusOK, response.WebJSONResponse("success get all user", result))
+}
+
 func GetProfile(c echo.Context) error {
-	idToken := middlewares.ExtractTokenUserId(c)
-	result, err := service.GetProfile(idToken)
+	idParam := c.Param("id")
+	result, err := service.GetProfile(idParam)
 	if err != nil {
 		if strings.Contains(err.Error(), "login") {
 			return c.JSON(http.StatusBadRequest, response.WebJSONResponse("error get profile: "+err.Error(), nil))
@@ -57,7 +65,7 @@ func GetProfile(c echo.Context) error {
 	}
 
 	responseProfile := ResponseUser{
-		ID:          idToken,
+		ID:          idParam,
 		UserName:    result.UserName,
 		PhoneNumber: result.PhoneNumber,
 		Email:       result.Email,
@@ -70,14 +78,14 @@ func GetProfile(c echo.Context) error {
 }
 
 func UpdateProfile(c echo.Context) error {
-	idToken := middlewares.ExtractTokenUserId(c)
+	idParam := c.Param("id")
 	updateRequest := userModel.User{}
 	errBind := c.Bind(&updateRequest)
 	if errBind != nil {
 		return c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error bind data: "+errBind.Error(), nil))
 	}
 
-	updateRequest.ID = idToken
+	updateRequest.ID = idParam
 
 	err := service.UpdateProfile(updateRequest)
 	if err != nil {
@@ -94,8 +102,8 @@ func UpdateProfile(c echo.Context) error {
 }
 
 func DeleteAccount(c echo.Context) error {
-	idToken := middlewares.ExtractTokenUserId(c)
-	err := service.Delete(idToken)
+	idParam := c.Param("id")
+	err := service.Delete(idParam)
 	if err != nil {
 		if strings.ContainsAny(err.Error(), "first") {
 			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
