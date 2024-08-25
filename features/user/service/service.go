@@ -8,24 +8,24 @@ import (
 	encrypts "star-pos/utils"
 )
 
-func Create(input userModel.User) error {
+func Create(input userModel.User) (string, error) {
 	if input.PhoneNumber == "" {
-		return errors.New("phone is required")
+		return "", errors.New("phone is required")
 	}
 
 	hashed, errhash := encrypts.NewHashService().HashPassword(input.Password)
 	if errhash != nil {
-		return errors.New("error hashing password")
+		return "", errors.New("error hashing password")
 	}
 
 	input.Password = hashed
 
-	err := repository.Insert(&input)
+	id, err := repository.Insert(&input)
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return id, nil
 }
 
 func GetAllUser() ([]userModel.User, error) {

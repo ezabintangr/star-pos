@@ -32,7 +32,7 @@ func CreateAccount(c echo.Context) error {
 		Password:    newRequest.Password,
 	}
 
-	errCreate := service.Create(requestAccount)
+	idCreated, errCreate := service.Create(requestAccount)
 	if errCreate != nil {
 		if strings.Contains(errCreate.Error(), "phone") {
 			return c.JSON(http.StatusBadRequest, response.WebJSONResponse("error create account: "+errCreate.Error(), nil))
@@ -41,7 +41,11 @@ func CreateAccount(c echo.Context) error {
 		}
 	}
 
-	return c.JSON(http.StatusCreated, response.WebJSONResponse("success create account", nil))
+	result := response.ResponseCreate{
+		ID: idCreated,
+	}
+
+	return c.JSON(http.StatusCreated, result)
 }
 
 func GetAllProfile(c echo.Context) error {
@@ -50,7 +54,7 @@ func GetAllProfile(c echo.Context) error {
 		c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error get all user: "+err.Error(), nil))
 	}
 
-	return c.JSON(http.StatusOK, response.WebJSONResponse("success get all user", result))
+	return c.JSON(http.StatusOK, result)
 }
 
 func GetProfile(c echo.Context) error {
@@ -74,7 +78,7 @@ func GetProfile(c echo.Context) error {
 		UpdatedAt:   result.UpdatedAt,
 	}
 
-	return c.JSON(http.StatusOK, response.WebJSONResponse("success get profile", responseProfile))
+	return c.JSON(http.StatusOK, responseProfile)
 }
 
 func UpdateProfile(c echo.Context) error {
@@ -98,7 +102,7 @@ func UpdateProfile(c echo.Context) error {
 		}
 	}
 
-	return c.JSON(http.StatusOK, response.WebJSONResponse("update successful", nil))
+	return c.NoContent(http.StatusNoContent)
 }
 
 func DeleteAccount(c echo.Context) error {
@@ -112,7 +116,7 @@ func DeleteAccount(c echo.Context) error {
 		}
 	}
 
-	return c.JSON(http.StatusOK, response.WebJSONResponse("delete account successfully", nil))
+	return c.NoContent(http.StatusNoContent)
 }
 
 func Login(c echo.Context) error {

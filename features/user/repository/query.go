@@ -8,17 +8,18 @@ import (
 	"github.com/google/uuid"
 )
 
-func Insert(input *userModel.User) error {
+func Insert(input *userModel.User) (string, error) {
 	if databases.DB == nil {
-		return errors.New("database connection is not initialized")
+		return "", errors.New("database connection is not initialized")
 	}
 
 	input.ID = uuid.New().String()
 	tx := databases.DB.Create(&input)
 	if tx.Error != nil {
-		return tx.Error
+		return "", tx.Error
 	}
-	return nil
+
+	return input.ID, nil
 }
 
 func ReadAllProfile() ([]userModel.User, error) {
