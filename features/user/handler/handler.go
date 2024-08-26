@@ -93,7 +93,7 @@ func UpdateProfile(c echo.Context) error {
 
 	err := service.UpdateProfile(updateRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "not change") {
+		if strings.Contains(err.Error(), "login") {
 			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
 		} else if strings.Contains(err.Error(), "required") {
 			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
