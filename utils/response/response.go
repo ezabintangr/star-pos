@@ -25,9 +25,3 @@ func WebJSONResponse(msg string, data interface{}) MapResponse {
 type ResponseCreate struct {
 	ID string `json:"id"`
 }
-
-// func WebJSONPlainResponse(data string) ResponseCreate {
-// 	return MapJSONPlain{
-// 		data,
-// 	}
-// }
