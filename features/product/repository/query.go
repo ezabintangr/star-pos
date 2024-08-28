@@ -46,10 +46,48 @@ func UpdateProduct(input productModel.Product) error {
 }
 
 func DeleteProduct(id string) error {
-	tx := databases.DB.Delete(&productModel.Product{}, "id = ?", id)
+	tx := databases.DB.Begin()
 	if tx.Error != nil {
 		return tx.Error
 	}
+
+	err := tx.Exec("ALTER TABLE cart_products DROP FOREIGN KEY fk_cart_products_product")
+	if err.Error != nil {
+		tx.Rollback()
+		return err.Error
+	}
+
+	err = tx.Exec(`ALTER TABLE cart_products
+	ADD CONSTRAINT fk_cart_products_product
+	FOREIGN KEY (product_id) REFERENCES products(id)
+	ON DELETE CASCADE;`)
+	if err.Error != nil {
+		tx.Rollback()
+		return err.Error
+	}
+
+	err = tx.Exec("ALTER TABLE discounts DROP FOREIGN KEY fk_discounts_product")
+	if err.Error != nil {
+		tx.Rollback()
+		return err.Error
+	}
+
+	err = tx.Exec(`ALTER TABLE discounts
+	ADD CONSTRAINT fk_discounts_product
+	FOREIGN KEY (product_id) REFERENCES products(id)
+	ON DELETE CASCADE;`)
+	if err.Error != nil {
+		tx.Rollback()
+		return err.Error
+	}
+
+	err = databases.DB.Delete(&productModel.Product{}, "id = ?", id)
+	if err.Error != nil {
+		tx.Rollback()
+		return err.Error
+	}
+
+	tx.Commit()
 
 	return nil
 }

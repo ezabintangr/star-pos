@@ -47,7 +47,7 @@ func GetAllCategories(c echo.Context) error {
 		responseCategories = append(responseCategories, CategoriesResponse{
 			ID:           data.ID,
 			UserID:       data.UserID,
-			CategoryName: data.UserID,
+			CategoryName: data.CategoryName,
 			CreatedAt:    data.CreatedAt,
 			UpdatedAt:    data.UpdatedAt,
 		})

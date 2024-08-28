@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	productModel "star-pos/features/product/model"
-	"star-pos/features/product/repository"
+	productData "star-pos/features/product/repository"
 
 	validator "github.com/go-playground/validator/v10"
 )
@@ -19,7 +19,7 @@ func AddProduct(input productModel.Product) (string, error) {
 		}
 	}
 
-	result, err := repository.CreateProduct(input)
+	result, err := productData.CreateProduct(input)
 	if err != nil {
 		return "", err
 	}
@@ -28,7 +28,7 @@ func AddProduct(input productModel.Product) (string, error) {
 }
 
 func GetAllProducts() ([]productModel.Product, error) {
-	result, err := repository.GetAllProducts()
+	result, err := productData.GetAllProducts()
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func GetProduct(id string) (*productModel.Product, error) {
 		return nil, errors.New("you must login first")
 	}
 
-	result, err := repository.GetProduct(id)
+	result, err := productData.GetProduct(id)
 	if err != nil {
 		return nil, err
 	}
@@ -54,16 +54,11 @@ func UpdateProduct(input productModel.Product) error {
 		return errors.New("you must login first")
 	}
 
-	result, err := GetProduct(input.ID)
-	if err != nil {
-		return err
-	}
-
-	if input.CategoriesID == "" && input.ProductName == "" && input.Stock == result.Stock && input.Price == result.Price {
+	if input.CategoriesID == "" && input.ProductName == "" && input.Stock == 0 && input.Price == 0 {
 		return errors.New("you didn't change anything")
 	}
 
-	err = repository.UpdateProduct(input)
+	err := productData.UpdateProduct(input)
 	if err != nil {
 		return err
 	}
@@ -76,7 +71,7 @@ func DeleteProduct(id string) error {
 		return errors.New("you must login first")
 	}
 
-	err := repository.DeleteProduct(id)
+	err := productData.DeleteProduct(id)
 	if err != nil {
 		return err
 	}

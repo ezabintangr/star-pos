@@ -21,6 +21,8 @@ func CreateProduct(c echo.Context) error {
 	if err != nil {
 		if strings.Contains(err.Error(), "required") {
 			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
+		} else if strings.Contains(err.Error(), "not found") {
+			return c.JSON(http.StatusNotFound, response.WebJSONResponse(err.Error(), nil))
 		} else {
 			return c.JSON(http.StatusInternalServerError, response.WebJSONResponse(err.Error(), nil))
 		}
@@ -39,7 +41,22 @@ func GetAllProducts(c echo.Context) error {
 		c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error get all product: "+err.Error(), nil))
 	}
 
-	return c.JSON(http.StatusOK, result)
+	allProductResponse := []ProductResponse{}
+
+	for _, data := range result {
+		allProductResponse = append(allProductResponse, ProductResponse{
+			ID:           data.ID,
+			UserID:       data.UserID,
+			ProductName:  data.ProductName,
+			CategoriesID: data.CategoriesID,
+			Stock:        data.Stock,
+			Price:        data.Price,
+			CreatedAt:    data.CreatedAt,
+			UpdatedAt:    data.UpdatedAt,
+		})
+	}
+
+	return c.JSON(http.StatusOK, allProductResponse)
 }
 
 func GetProduct(c echo.Context) error {
