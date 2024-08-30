@@ -55,9 +55,6 @@ func GetAllDiscounts(c echo.Context) error {
 			DiscountMax:  data.DiscountMax,
 			CreatedAt:    data.CreatedAt,
 			UpdatedAt:    data.UpdatedAt,
-			User:         data.User,
-			Outlet:       data.Outlet,
-			Product:      data.Product,
 		})
 	}
 
@@ -88,9 +85,6 @@ func GetCurrentDiscount(c echo.Context) error {
 		DiscountMax:  result.DiscountMax,
 		CreatedAt:    result.CreatedAt,
 		UpdatedAt:    result.UpdatedAt,
-		User:         result.User,
-		Outlet:       result.Outlet,
-		Product:      result.Product,
 	}
 
 	return c.JSON(http.StatusOK, responseDiscount)
