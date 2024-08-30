@@ -95,7 +95,12 @@ func Delete(id string) error {
 		return errors.New("you must login first")
 	}
 
-	err := repository.DeleteAccount(id)
+	result, err := GetProfile(id)
+	if err != nil {
+		return err
+	}
+
+	err = repository.DeleteAccount(result.ID)
 	if err != nil {
 		return err
 	}
