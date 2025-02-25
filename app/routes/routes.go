@@ -2,6 +2,7 @@ package routes
 
 import (
 	categoryHandler "star-pos/features/categories/handler"
+	discountHandler "star-pos/features/discount/handler"
 	productHandler "star-pos/features/product/handler"
 	userHandler "star-pos/features/user/handler"
 
@@ -29,4 +30,10 @@ func InitRouter(e *echo.Echo) {
 	e.GET("/product/:id", productHandler.GetProduct)
 	e.PATCH("/product/:id", productHandler.UpdateProduct)
 	e.DELETE("/product/:id", productHandler.DeleteProduct)
+
+	e.POST("/discounts", discountHandler.CreateDiscounts)
+	e.GET("/discounts", discountHandler.GetAllDiscounts)
+	e.GET("/discounts/:id", discountHandler.GetCurrentDiscount)
+	e.PATCH("/discounts/:id", discountHandler.UpdateDiscount)
+	e.DELETE("/discounts/:id", discountHandler.DeleteDiscount)
 }
