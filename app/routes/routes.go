@@ -1,9 +1,9 @@
 package routes
 
 import (
-
 	categoryHandler "star-pos/features/categories/handler"
 	discountHandler "star-pos/features/discount/handler"
+	productHandler "star-pos/features/product/handler"
 	userHandler "star-pos/features/user/handler"
 
 	"github.com/labstack/echo/v4"
@@ -24,7 +24,13 @@ func InitRouter(e *echo.Echo) {
 	e.GET("/category/:id", categoryHandler.GetCurrentCategory)
 	e.PATCH("/category/:id", categoryHandler.UpdateCategory)
 	e.DELETE("/category/:id", categoryHandler.DeleteCategory)
-  
+
+	e.POST("/product", productHandler.CreateProduct)
+	e.GET("/product", productHandler.GetAllProducts)
+	e.GET("/product/:id", productHandler.GetProduct)
+	e.PATCH("/product/:id", productHandler.UpdateProduct)
+	e.DELETE("/product/:id", productHandler.DeleteProduct)
+
 	e.POST("/discounts", discountHandler.CreateDiscounts)
 	e.GET("/discounts", discountHandler.GetAllDiscounts)
 	e.GET("/discounts/:id", discountHandler.GetCurrentDiscount)

@@ -13,11 +13,11 @@
             "program": "${workspaceFolder}",
             "cwd": "${workspaceFolder}",
             "env": {
-                "DBUSER":"root",
-                "DBPASS":"",             
+                "DBUSER":"star-pos",
+                "DBPASS":"star-pos",             
                 "DBHOST":"127.0.0.1",
-                "DBPORT":"3307",
-                "DBNAME":"star_pos"
+                "DBPORT":"3306",
+                "DBNAME":"star-pos"
             },
             "args": [],
             "buildFlags": "",
