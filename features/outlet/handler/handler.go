@@ -46,13 +46,7 @@ func GetOutlet(c echo.Context) error {
 	idParam := c.Param("id")
 	outlet, err := service.GetById(idParam)
 	if err != nil {
-		if strings.Contains(err.Error(), "login") {
-			return c.JSON(http.StatusBadRequest, response.WebJSONResponse("error get Outlet: "+err.Error(), nil))
-		} else if strings.Contains(err.Error(), "not found") {
-			return c.NoContent(http.StatusNotFound)
-		} else {
-			return c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error get Outlet: "+err.Error(), nil))
-		}
+		return response.HandleError(c, err)
 	}
 
 	return c.JSON(http.StatusOK, outlet)
@@ -63,20 +57,14 @@ func UpdateOutlet(c echo.Context) error {
 	updateRequest := outletModel.Outlet{}
 	errBind := c.Bind(&updateRequest)
 	if errBind != nil {
-		return c.JSON(http.StatusInternalServerError, response.WebJSONResponse("error bind data: "+errBind.Error(), nil))
+		return response.HandleBindError(c, errBind)
 	}
 
 	updateRequest.ID = idParam
 
 	err := service.Update(updateRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "login") {
-			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
-		} else if strings.Contains(err.Error(), "required") {
-			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
-		} else {
-			return c.JSON(http.StatusInternalServerError, response.WebJSONResponse(err.Error(), nil))
-		}
+		return response.HandleError(c, err)
 	}
 
 	return c.NoContent(http.StatusNoContent)
@@ -87,11 +75,7 @@ func DeleteOutlet(c echo.Context) error {
 	err := service.Delete(idParam)
 
 	if err != nil {
-		if strings.Contains(err.Error(), "login") {
-			return c.JSON(http.StatusBadRequest, response.WebJSONResponse(err.Error(), nil))
-		} else {
-			return c.JSON(http.StatusInternalServerError, response.WebJSONResponse(err.Error(), nil))
-		}
+		return response.HandleError(c, err)
 	}
 
 	return c.NoContent(http.StatusNoContent)
