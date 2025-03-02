@@ -1,3 +1,4 @@
 *.env
 *.sum
 vendor
+__debug*
