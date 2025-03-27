@@ -14,7 +14,6 @@ import (
 	transactionModel "star-pos/features/transaction/model"
 	transactionDetailModel "star-pos/features/transaction_detail/model"
 	userModel "star-pos/features/user/model"
-	"time"
 )
 
 func InitMigration() {
@@ -152,10 +151,6 @@ func InitMigration() {
 		log.Println("table already exist")
 	} else {
 		for i, data := range carts {
-			_, err = time.Parse("2006-01-02", data.Date.Format("2006-01-02"))
-			if err != nil {
-				log.Fatal("error parse date: ", err)
-			}
 			data.UserID = users[i].ID
 			data.OutletID = outlet[i].ID
 			tx := databases.DB.Create(&data)

@@ -45,5 +45,6 @@ func InitRouter(e *echo.Echo) {
 	e.PATCH("/outlets/:id", outletHandler.UpdateOutlet)
 	e.DELETE("/outlets/:id", outletHandler.DeleteOutlet)
 
+	e.GET("/cart/:id", cartHandler.Get)
 	e.POST("/cart/:id/product", cartHandler.AddProductToCartHandler)
 }

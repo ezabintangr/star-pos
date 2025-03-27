@@ -1,10 +1,9 @@
 package repository
 
 import (
+	"github.com/google/uuid"
 	"star-pos/app/databases"
 	cartModel "star-pos/features/cart/model"
-
-	"github.com/google/uuid"
 )
 
 func Get(id string) (*cartModel.Cart, error) {
@@ -17,8 +16,12 @@ func Get(id string) (*cartModel.Cart, error) {
 	return &cart, nil
 }
 
-func Create(input cartModel.Cart) (string, error) {
-	input.ID = uuid.NewString()
+func Create(cartId string, input cartModel.Cart) (string, error) {
+	if cartId == "" {
+		input.ID = uuid.NewString()
+	} else {
+		input.ID = cartId
+	}
 	tx := databases.DB.Create(&input)
 	if tx.Error != nil {
 		return "", tx.Error

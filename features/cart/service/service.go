@@ -6,31 +6,33 @@ import (
 	"star-pos/features/cart_product/repository"
 )
 
-func AddProductToCart(input cartModel.AddProductToCart) (string, error) {
-	var idCart string = input.CartId
+func AddProductToCart(cartId string, input cartModel.AddProductToCart, userId string) (string, error) {
 	var err error
-	if input.CartId == "" {
-		idCart, err = createCart(input)
+	cart, err := cartRepository.Get(cartId)
+	if err != nil && err.Error() != "record not found" {
+		return "", err
+	}
+	if cart == nil {
+		_, err = createCart(cartId, input, userId)
 		if err != nil {
 			return "", err
 		}
 	}
 
-	idCreated, err := addProductToCart(idCart, input)
+	idCreated, err := addProductToCart(cartId, input)
 	if err != nil {
 		return "", err
 	}
 	return idCreated, nil
 }
 
-func createCart(input cartModel.AddProductToCart) (string, error) {
+func createCart(cartId string, input cartModel.AddProductToCart, userId string) (string, error) {
 	cart := cartModel.Cart{
-		UserID:   "test",
-		RefID:    "test",
+		UserID:   userId,
 		OutletID: input.OutletId,
 	}
 
-	return cartRepository.Create(cart)
+	return cartRepository.Create(cartId, cart)
 }
 
 func addProductToCart(idCart string, input cartModel.AddProductToCart) (string, error) {
