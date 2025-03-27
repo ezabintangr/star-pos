@@ -9,11 +9,11 @@ import (
 
 func HandleError(c echo.Context, err error) error {
 	if strings.Contains(err.Error(), "login") {
-		return c.JSON(http.StatusBadRequest, WebJSONResponse("error get Outlet: "+err.Error(), nil))
+		return c.JSON(http.StatusBadRequest, WebJSONResponse("error: "+err.Error(), nil))
 	} else if strings.Contains(err.Error(), "not found") {
 		return c.NoContent(http.StatusNotFound)
 	} else {
-		return c.JSON(http.StatusInternalServerError, WebJSONResponse("error get Outlet: "+err.Error(), nil))
+		return c.JSON(http.StatusInternalServerError, WebJSONResponse("error: "+err.Error(), nil))
 	}
 }
 
